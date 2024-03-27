@@ -1,3 +1,6 @@
+# Imports: 
+import sys # using this library for error handling, not sure if correct
+
 # Menu dictionary
 menu = {
     "Snacks": {
@@ -49,13 +52,26 @@ menu = {
         "Fried banana": 4.49
     }
 }
-
 # 1. Set up order list. Order list will store a list of dictionaries for
 # menu item name, item price, and quantity ordered
+order_list = [
+  {
+    "Item name": "string",
+    "Price": float,
+    "Quantity": int
+  },
+  {
+    "Item name": "string",
+    "Price": float,
+    "Quantity": int
+  },
+]
 
 
 # Launch the store and present a greeting to the customer
-print("Welcome to the variety food truck.")
+print("----------------------------------\n"
+      + "Welcome to the variety food truck.\n"
+      + "----------------------------------\n")
 
 # Customers may want to order multiple items, so let's create a continuous
 # loop
@@ -118,19 +134,26 @@ while place_order:
                     }
                     i += 1
             # 2. Ask customer to input menu item number
-
+            menu_selection = input("Please input menu item number: ")
 
             # 3. Check if the customer typed a number
+            while not menu_selection.isdigit():
+                print("Error: Please input a valid integer", file = sys.stderr)
+                menu_selection = input("Please input menu item number")
+            
+            # Convert the menu selection to an integer
+            menu_selection = int(menu_selection)
+            print("menu_selection: ", menu_selection)
+            
+            # 4. Check if the menu selection is in the menu items
+            if menu_selection >= 1 and menu_selection <= i -1:
+                
+                # Store the item name as a variable
+                for item in menu_items.get(menu_selection):
+                   print()
 
-                # Convert the menu selection to an integer
-
-
-                # 4. Check if the menu selection is in the menu items
-
-                    # Store the item name as a variable
-
-
-                    # Ask the customer for the quantity of the menu item
+                    # Ask the customer for the quantity of the 1
+                    # menu item
 
 
                     # Check if the quantity is a number, default to 1 if not
