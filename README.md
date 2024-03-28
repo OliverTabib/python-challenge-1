@@ -54,10 +54,18 @@ Type menu number: 6
 6 was not a menu option.
 ```
 
-Finally the user is given a receipt printed to the console with their items, quanities and costs displayed.
+Finally the user is given a receipt printed to the console with their items, quanities and costs displayed and formatted.
 
 
 ```
-print("Item name                 | Price  | Quantity")
-print("--------------------------|--------|----------")
+Would you like to keep ordering? (Y)es or (N)o no
+This is what we are preparing for you.
+
+Item name                 | Price  | Quantity
+--------------------------|--------|----------
+Rice pudding              | $4.99  | 10000
+
+----------------------------------------------
+Total: $49,900.00
+----------------------------------------------
 ```
