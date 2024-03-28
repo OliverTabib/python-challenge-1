@@ -73,6 +73,7 @@ print("----------------------------------\n"
       + "Welcome to the variety food truck.\n"
       + "----------------------------------\n")
 
+
 # Customers may want to order multiple items, so let's create a continuous
 # loop
 place_order = True
@@ -143,30 +144,59 @@ while place_order:
             
             # Convert the menu selection to an integer
             menu_selection = int(menu_selection)
-            print("menu_selection: ", menu_selection)
+          
             
             # 4. Check if the menu selection is in the menu items
             if menu_selection >= 1 and menu_selection <= i -1:
+                subMenu = {}
                 
                 # Store the item name as a variable
-                for item in menu_items.get(menu_selection):
-                   print()
+                # Cast menu_category to int
+                menu_category = int(menu_category)
+            
+                # Submenu selection handling
+                match menu_category:
+                    case 1:
+                        subMenu = menu.get("Snacks")
+                    case 2:
+                        subMenu = menu.get("Meals")    
+                    case 3:
+                        subMenu = menu.get("Drinks")
+                    case 4:
+                        subMenu = menu.get("Dessert")
+                
+                # Item selection handling
+                # Helper function for item selection
+                def itemSelect(menu, num):
+                    i = 1 # The actual list is indexed at 1 not 0
+                    for key in menu:
+                        if(i == num):
+                            return key
+                        i += 1
+                  
 
-                    # Ask the customer for the quantity of the 1
-                    # menu item
+                item = str(itemSelect(subMenu, menu_selection))
+                
+                # Ask the customer for the quantity of the 1
+                # menu item
+                q = input("How many do you want? ")
 
-
-                    # Check if the quantity is a number, default to 1 if not
-
-
-                    # Add the item name, price, and quantity to the order list
-
-
-                    # Tell the customer that their input isn't valid
-
-
+               
+                # Tell the customer that their input isn't valid
                 # Tell the customer they didn't select a menu option
 
+
+                # Check if the quantity is a number, default to 1 if not
+                if not q.isdigit():
+                    q = int(1)
+                else:
+                    q = int(q)
+                
+                # Add the item name, price, and quantity to the order list
+                order_list[0].update({"Item name" : item})
+                order_list[0].update({"Price" : subMenu.get(item)})
+                order_list[0].update({"Quantity" : q})
+        
         else:
             # Tell the customer they didn't select a menu option
             print(f"{menu_category} was not a menu option.")
@@ -177,10 +207,17 @@ while place_order:
     while True:
         # Ask the customer if they would like to order anything else
         keep_ordering = input("Would you like to keep ordering? (Y)es or (N)o ")
-
+       
         # 5. Check the customer's input
 
-                # Keep ordering
+       
+        if keep_ordering == "yes"or keep_ordering == "y":
+            place_order = True
+            break
+        else:
+            place_order = False
+            break
+        continue # Reiterate main loop
 
                 # Exit the keep ordering question loop
 
